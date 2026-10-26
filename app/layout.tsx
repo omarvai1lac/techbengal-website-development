@@ -3,8 +3,17 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'TechBengal — Engineering the Future of Technology',
+  description: 'TechBengal builds intelligent software, digital experiences, electronics, and future-facing technology capabilities.',
+  metadataBase: new URL('https://techbengal.com'),
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'TechBengal — Engineering the Future of Technology',
+    description: 'Technology. Innovation. Intelligence.',
+    type: 'website',
+    url: 'https://techbengal.com',
+  },
+  twitter: { card: 'summary_large_image', title: 'TechBengal', description: 'Engineering the future of technology.' },
   generator: 'v0.app',
   icons: {
     icon: [
@@ -26,11 +35,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#080D18',
+  userScalable: true,
 }
 
 export default function RootLayout({
