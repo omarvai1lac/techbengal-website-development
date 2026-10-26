@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ArrowUpRight, Cpu, Menu, Network, Sparkles, X, Zap } from 'lucide-react'
+import { ArrowUpRight, Cpu, Menu, Moon, Network, Sparkles, Sun, X, Zap } from 'lucide-react'
 
 const navItems = [
   ['Services', '/services'],
@@ -34,16 +34,19 @@ function Mark() {
   return <span className="brand-logo-frame" aria-hidden="true"><img src={brandLogoUrl} alt="" /></span>
 }
 
-function Header() {
+function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: () => void }) {
   const [open, setOpen] = useState(false)
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="wordmark" aria-label="TechBengal home"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link>
       <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
-      <Link className="button button-small button-light desktop-cta" href="/contact">Start a Project <ArrowUpRight aria-hidden="true" /></Link>
+      <div className="header-actions">
+        <button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
+        <Link className="button button-small button-light desktop-cta" href="/contact">Start a Project <ArrowUpRight aria-hidden="true" /></Link>
+      </div>
       <button className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
     </div>
-    {open && <nav className="mobile-nav" aria-label="Mobile navigation">{navItems.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}<ArrowUpRight aria-hidden="true" /></Link>)}<Link className="button button-light" href="/contact" onClick={() => setOpen(false)}>Start a Project <ArrowUpRight /></Link></nav>}
+    {open && <nav className="mobile-nav" aria-label="Mobile navigation">{navItems.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}<ArrowUpRight aria-hidden="true" /></Link>)}<button className="theme-toggle mobile-theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark mode' : 'Light mode'}</span></button><Link className="button button-light" href="/contact" onClick={() => setOpen(false)}>Start a Project <ArrowUpRight /></Link></nav>}
   </header>
 }
 
@@ -62,7 +65,8 @@ function Footer() {
 }
 
 export function TechBengalSite() {
-  return <div className="site-shell"><Header /><main>
+  const [isLight, setIsLight] = useState(false)
+  return <div className={`site-shell${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} /><main>
     <section className="hero-section"><div className="container hero-grid"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> Software <i>•</i> AI <i>•</i> Hardware <i>•</i> Semiconductors</div><h1>Engineering the <em>future</em> of technology.</h1><p className="hero-description">From intelligent software and AI-powered business solutions to electronics and semiconductor innovation, TechBengal is building technology for a more connected and capable world.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a Project <ArrowUpRight /></Link><Link className="text-link" href="/technology">Explore our capabilities <ArrowUpRight /></Link></div></div><HeroGraphic /></div><div className="container hero-foot"><span>01 — 03</span><span>Technology with intent</span><span className="scroll-line" /></div></section>
     <section className="section divisions-section"><div className="container"><div className="section-heading"><div><span className="section-kicker">Our domains</span><h2>Three domains.<br /><em>One technology vision.</em></h2></div><p>We bring together digital innovation, electronics engineering, and semiconductor technology under one forward-looking technology brand.</p></div><div className="division-grid">{divisions.map(({ number, title, text, href, icon: Icon, tone, tags }) => <Link className={`division-card ${tone}`} href={href} key={href}><div className="card-top"><span>{number}</span><Icon aria-hidden="true" /></div><div className="division-visual"><div className="visual-lines" /><div className="visual-circle" /><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p><div className="tag-list">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="card-link">Explore domain <ArrowUpRight aria-hidden="true" /></span></Link>)}</div></div></section>
     <section className="section services-section"><div className="container services-layout"><div className="services-intro"><span className="section-kicker">What we do</span><h2>Technology that solves <em>real problems.</em></h2><p>Good technology is not measured by how complex it is. It is measured by what it makes possible.</p><Link className="text-link" href="/services">View all services <ArrowUpRight /></Link></div><div className="services-list">{services.map(([num, title, text]) => <Link href={`/services/${title.toLowerCase().replaceAll(' ', '-')}`} className="service-row" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowUpRight aria-hidden="true" /></Link>)}</div></div></section>
