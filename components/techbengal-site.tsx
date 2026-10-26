@@ -14,7 +14,7 @@ const navItems = [
 ] as const
 
 const divisions = [
-  { number: '01', title: 'Software & Digital Solutions', text: 'Digital experiences, custom software, and intelligent automation designed to help businesses operate and grow.', href: '/services', icon: Network, tone: 'cyan', tags: ['UI/UX', 'Websites', 'AI automation'] },
+  { number: '01', title: 'Software & Digital Solution', text: 'Digital experiences, custom software, and intelligent automation designed to help businesses operate and grow.', href: '/technology/software-digital-solutions', icon: Network, tone: 'cyan', tags: ['UI/UX', 'Websites', 'AI automation'] },
   { number: '02', title: 'Electronics & Hardware', text: 'Exploring electronic products, hardware development, embedded technologies, and engineering-led innovation.', href: '/technology/electronics', icon: Cpu, tone: 'violet', tags: ['Embedded systems', 'IoT', 'Prototyping'] },
   { number: '03', title: 'Semiconductor & Microchips', text: 'A technology focus on microelectronics, chip-related engineering, semiconductor research, and future computing technologies.', href: '/technology/semiconductors', icon: Zap, tone: 'amber', tags: ['Microelectronics', 'R&D', 'IC design'] },
 ] as const
