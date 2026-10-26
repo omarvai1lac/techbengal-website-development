@@ -52,7 +52,7 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
 
 function HeroGraphic() {
   return <div className="hero-graphic" aria-label="Abstract illustration of connected technology systems" role="img">
-    <div className="graphic-orbit orbit-one" /><div className="graphic-orbit orbit-two" />
+  <div className="graphic-orbit orbit-two" />
     <div className="graphic-core"><div className="core-grid" /><div className="core-logo-stage"><img src={brandLogoUrl} alt="" /></div></div>
     <span className="node node-a" /><span className="node node-b" /><span className="node node-c" /><span className="node node-d" />
   </div>
