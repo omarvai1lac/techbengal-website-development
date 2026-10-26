@@ -28,8 +28,10 @@ const services = [
   ['06', 'Business Support', 'A steady technical partner for your next important decision.'],
 ] as const
 
+const brandLogoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_puibbtpuibbtpuib.jfif-4ol7xqbsL3sYhTav4TGWOelzwipCm7.jpeg'
+
 function Mark() {
-  return <span className="brand-mark" aria-hidden="true"><span /><span /><span /><span /></span>
+  return <span className="brand-logo-frame" aria-hidden="true"><img src={brandLogoUrl} alt="" /></span>
 }
 
 function Header() {
