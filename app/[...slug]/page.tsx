@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { ServicesPage } from '@/components/services-page'
 
 const content: Record<string, { eyebrow: string; title: string; text: string }> = {
   about: { eyebrow: 'About TechBengal', title: 'A technology company with a wider horizon.', text: 'TechBengal combines creativity, engineering, automation, and research to build technology that addresses real-world challenges.' },
@@ -15,6 +16,7 @@ const content: Record<string, { eyebrow: string; title: string; text: string }> 
 export default async function SlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params
   const key = slug[0] === 'technology' && slug[1] ? slug.join('/') : slug[0]
+  if (key === 'services') return <ServicesPage />
   const item = content[key] ?? content.technology
   return <main className="inner-page"><div className="container inner-wrap"><Link className="wordmark inner-wordmark" href="/"><span className="brand-mark"><span /><span /><span /><span /></span><span>Tech<span className="wordmark-accent">Bengal</span></span></Link><div className="inner-content"><span className="section-kicker">{item.eyebrow}</span><h1>{item.title}</h1><p>{item.text}</p><Link className="button button-primary" href={key === 'contact' ? 'mailto:hello@techbengal.com' : '/contact'}>{key === 'contact' ? 'Email TechBengal' : 'Start a conversation'} <ArrowUpRight /></Link></div><Link href="/" className="text-link">Back to home <ArrowUpRight /></Link></div></main>
 }
