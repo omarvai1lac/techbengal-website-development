@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ArrowUpRight, Cpu, Menu, Moon, Network, Sparkles, Sun, X, Zap } from 'lucide-react'
+import { ArrowUpRight, Cpu, Menu, Moon, Network, Sun, X, Zap } from 'lucide-react'
 
 const navItems = [
   ['Services', '/services'],
@@ -55,8 +55,6 @@ function HeroGraphic() {
     <div className="graphic-orbit orbit-one" /><div className="graphic-orbit orbit-two" />
     <div className="graphic-core"><div className="core-grid" /><div className="core-logo-stage"><img src={brandLogoUrl} alt="" /></div></div>
     <span className="node node-a" /><span className="node node-b" /><span className="node node-c" /><span className="node node-d" />
-    <div className="graphic-panel panel-top"><span className="panel-label">SYSTEM / 01</span><span className="panel-line line-long" /><span className="panel-line line-short" /></div>
-    <div className="graphic-panel panel-bottom"><Sparkles aria-hidden="true" /><span>ideas → impact</span></div>
   </div>
 }
 
