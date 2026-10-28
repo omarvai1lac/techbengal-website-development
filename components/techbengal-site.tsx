@@ -52,16 +52,18 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
 
 function CircuitEnergyBackground() {
   const circuits = [
-    'M -40 118 H 170 L 235 72 H 430 L 500 118 H 720',
-    'M 1100 92 H 930 L 870 138 H 690 L 620 92 H 470',
-    'M -30 370 H 210 L 275 320 H 410 L 475 370 H 650',
-    'M 1130 345 H 950 L 880 395 H 755 L 685 345 H 555',
-    'M 205 0 V 92 L 260 132 V 220 L 205 260 V 420',
-    'M 920 0 V 78 L 865 118 V 208 L 920 248 V 420',
-    'M 410 440 V 348 L 470 304 H 610 L 670 348 V 440',
-    'M 565 0 V 74 L 520 108 V 170 L 565 204 V 276',
+    'M -30 92 H 160 L 226 48 H 360 L 430 92 H 500',
+    'M -30 210 H 120 L 188 166 H 330 L 398 210 H 470',
+    'M -30 334 H 170 L 238 378 H 388 L 456 334 H 520',
+    'M 1130 92 H 940 L 872 48 H 740 L 672 92 H 600',
+    'M 1130 210 H 980 L 912 166 H 770 L 702 210 H 630',
+    'M 1130 334 H 930 L 862 378 H 712 L 644 334 H 575',
+    'M 420 -20 V 70 L 482 112 V 160',
+    'M 680 -20 V 70 L 618 112 V 160',
+    'M 420 460 V 370 L 482 328 V 280',
+    'M 680 460 V 370 L 618 328 V 280',
   ]
-  return <div className="circuit-energy" aria-hidden="true"><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -1.4}s` }} />)}</g><g className="circuit-nodes">{[[170,118],[430,72],[930,92],[690,138],[210,370],[950,345],[410,440],[920,248],[565,204]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-signature">TECHBENGAL <i>•</i> FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
+  return <div className="circuit-energy" aria-hidden="true"><div className="circuit-emblem"><img src={brandLogoUrl} alt="" /><span>TECHBENGAL</span><small>FUTURISTIC MINDSET</small></div><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -0.8}s` }} />)}</g><g className="circuit-nodes">{[[160,92],[188,166],[170,334],[940,92],[912,166],[930,334],[420,70],[680,70],[420,370],[680,370]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
 }
 
 function HeroGraphic() {
