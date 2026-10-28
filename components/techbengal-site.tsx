@@ -51,19 +51,19 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
 }
 
 function CircuitEnergyBackground() {
-  const circuits = [
-    'M -30 92 H 160 L 226 48 H 360 L 430 92 H 500',
-    'M -30 210 H 120 L 188 166 H 330 L 398 210 H 470',
-    'M -30 334 H 170 L 238 378 H 388 L 456 334 H 520',
-    'M 1130 92 H 940 L 872 48 H 740 L 672 92 H 600',
-    'M 1130 210 H 980 L 912 166 H 770 L 702 210 H 630',
-    'M 1130 334 H 930 L 862 378 H 712 L 644 334 H 575',
-    'M 420 -20 V 70 L 482 112 V 160',
-    'M 680 -20 V 70 L 618 112 V 160',
-    'M 420 460 V 370 L 482 328 V 280',
-    'M 680 460 V 370 L 618 328 V 280',
+  const tigerFlow = [
+    'M 0 18 H 180 L 250 70 H 420 L 492 18 H 620',
+    'M 0 144 H 120 L 190 102 H 330 L 410 154 H 520 L 580 112 H 720',
+    'M 0 320 H 150 L 220 368 H 390 L 470 302 H 610 L 690 354 H 860',
+    'M 1100 18 H 920 L 850 70 H 680 L 608 18 H 480',
+    'M 1100 144 H 980 L 910 102 H 770 L 690 154 H 580 L 520 112 H 380',
+    'M 1100 320 H 950 L 880 368 H 710 L 630 302 H 490 L 410 354 H 240',
+    'M 318 -20 V 48 L 400 104 V 180',
+    'M 782 -20 V 48 L 700 104 V 180',
+    'M 318 460 V 392 L 400 336 V 260',
+    'M 782 460 V 392 L 700 336 V 260',
   ]
-  return <div className="circuit-energy" aria-hidden="true"><div className="circuit-emblem"><img src={brandLogoUrl} alt="" /><span>TECHBENGAL</span><small>FUTURISTIC MINDSET</small></div><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -0.8}s` }} />)}</g><g className="circuit-nodes">{[[160,92],[188,166],[170,334],[940,92],[912,166],[930,334],[420,70],[680,70],[420,370],[680,370]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
+  return <div className="circuit-energy" aria-hidden="true"><div className="circuit-brand-stamp"><img src={brandLogoUrl} alt="" /><span>TECHBENGAL</span><small>FUTURISTIC MINDSET</small></div><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{tigerFlow.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{tigerFlow.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -0.65}s` }} />)}</g><g className="circuit-nodes">{[[180,18],[190,102],[150,320],[920,18],[910,102],[950,320],[318,48],[782,48],[318,392],[782,392]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
 }
 
 function HeroGraphic() {
