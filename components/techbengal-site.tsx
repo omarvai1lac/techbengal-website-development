@@ -66,14 +66,6 @@ function CircuitEnergyBackground() {
   return <div className="circuit-energy" aria-hidden="true"><div className="circuit-brand-stamp"><img src={brandLogoUrl} alt="" /><span>TECHBENGAL</span><small>FUTURISTIC MINDSET</small></div><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{tigerFlow.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{tigerFlow.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -0.65}s` }} />)}</g><g className="circuit-nodes">{[[180,18],[190,102],[150,320],[920,18],[910,102],[950,320],[318,48],[782,48],[318,392],[782,392]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
 }
 
-function HeroGraphic() {
-  return <div className="hero-graphic" aria-label="Abstract illustration of connected technology systems" role="img">
-  <div className="graphic-orbit orbit-two" />
-    <div className="graphic-core"><div className="core-grid" /><div className="core-logo-stage"><img src={brandLogoUrl} alt="" /></div></div>
-    <span className="node node-a" /><span className="node node-b" /><span className="node node-c" /><span className="node node-d" />
-  </div>
-}
-
 function Footer() {
   return <footer className="site-footer"><div className="container footer-grid"><div><Link href="/" className="wordmark"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link><p className="footer-note">Technology. Innovation. Intelligence.</p></div><div className="footer-links"><div><span className="footer-label">Explore</span>{navItems.slice(0, 4).map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div><div><span className="footer-label">Connect</span><a href="mailto:techbengal26@gmail.com">techbengal26@gmail.com</a><a className="footer-social-link" href="https://facebook.com/tbengal" target="_blank" rel="noreferrer" aria-label="TechBengal on Facebook"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v8h4v-8h3.33L17 12H13V9c0-.67.33-1 1-1Z" /></svg><span>Facebook</span></a><Link href="/contact">Start a conversation</Link></div></div></div><div className="container footer-bottom"><span>© 2026 TechBengal. Built for what&apos;s next.</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></span></div></footer>
 }
