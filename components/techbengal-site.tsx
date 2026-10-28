@@ -61,7 +61,7 @@ function CircuitEnergyBackground() {
     'M 410 440 V 348 L 470 304 H 610 L 670 348 V 440',
     'M 565 0 V 74 L 520 108 V 170 L 565 204 V 276',
   ]
-  return <div className="circuit-energy" aria-hidden="true"><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -1.4}s` }} />)}</g><g className="circuit-nodes">{[[170,118],[430,72],[930,92],[690,138],[210,370],[950,345],[410,440],[920,248],[565,204]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-signature">FUTURISTIC MINDSET</span></div>
+  return <div className="circuit-energy" aria-hidden="true"><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -1.4}s` }} />)}</g><g className="circuit-nodes">{[[170,118],[430,72],[930,92],[690,138],[210,370],[950,345],[410,440],[920,248],[565,204]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-signature">TECHBENGAL <i>•</i> FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-one">TECHBENGAL / FUTURISTIC MINDSET</span><span className="circuit-slogan circuit-slogan-two">TECHBENGAL / FUTURISTIC MINDSET</span></div>
 }
 
 function HeroGraphic() {
