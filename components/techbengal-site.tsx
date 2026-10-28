@@ -50,6 +50,20 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
   </header>
 }
 
+function CircuitEnergyBackground() {
+  const circuits = [
+    'M -40 118 H 170 L 235 72 H 430 L 500 118 H 720',
+    'M 1100 92 H 930 L 870 138 H 690 L 620 92 H 470',
+    'M -30 370 H 210 L 275 320 H 410 L 475 370 H 650',
+    'M 1130 345 H 950 L 880 395 H 755 L 685 345 H 555',
+    'M 205 0 V 92 L 260 132 V 220 L 205 260 V 420',
+    'M 920 0 V 78 L 865 118 V 208 L 920 248 V 420',
+    'M 410 440 V 348 L 470 304 H 610 L 670 348 V 440',
+    'M 565 0 V 74 L 520 108 V 170 L 565 204 V 276',
+  ]
+  return <div className="circuit-energy" aria-hidden="true"><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-base">{circuits.map(path => <path key={path} d={path} />)}</g><g className="circuit-pulses">{circuits.map((path, index) => <path key={`pulse-${path}`} d={path} style={{ animationDelay: `${index * -1.4}s` }} />)}</g><g className="circuit-nodes">{[[170,118],[430,72],[930,92],[690,138],[210,370],[950,345],[410,440],[920,248],[565,204]].map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index % 3 === 0 ? 4 : 2.5} />)}</g></svg><span className="circuit-signature">FUTURISTIC MINDSET</span></div>
+}
+
 function HeroGraphic() {
   return <div className="hero-graphic" aria-label="Abstract illustration of connected technology systems" role="img">
   <div className="graphic-orbit orbit-two" />
@@ -65,7 +79,7 @@ function Footer() {
 export function TechBengalSite() {
   const [isLight, setIsLight] = useState(false)
   return <div className={`site-shell${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} /><main>
-    <section className="hero-section"><div className="container hero-grid hero-grid-centered"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> Software <i>•</i> AI <i>•</i> Hardware <i>•</i> Semiconductors</div><h1>Engineering the <em>future</em> of technology.</h1><p className="hero-description">From intelligent software and AI-powered business solutions to electronics and semiconductor innovation, TechBengal is building technology for a more connected and capable world.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a Project <ArrowUpRight /></Link><Link className="text-link" href="/technology">Explore our capabilities <ArrowUpRight /></Link></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Technology with intent</span><span className="scroll-line" /></div></section>
+    <section className="hero-section"><CircuitEnergyBackground /><div className="container hero-grid hero-grid-centered"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> Software <i>•</i> AI <i>•</i> Hardware <i>•</i> Semiconductors</div><h1>Engineering the <em>future</em> of technology.</h1><p className="hero-description">From intelligent software and AI-powered business solutions to electronics and semiconductor innovation, TechBengal is building technology for a more connected and capable world.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a Project <ArrowUpRight /></Link><Link className="text-link" href="/technology">Explore our capabilities <ArrowUpRight /></Link></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Technology with intent</span><span className="scroll-line" /></div></section>
     <section className="section divisions-section"><div className="container"><div className="section-heading"><div><span className="section-kicker">Our domains</span><h2>Three domains.<br /><em>One technology vision.</em></h2></div><p>We bring together digital innovation, electronics engineering, and semiconductor technology under one forward-looking technology brand.</p></div><div className="division-grid">{divisions.map(({ number, title, text, href, icon: Icon, tone, tags }) => <Link className={`division-card ${tone}`} href={href} key={href}><div className="card-top"><span>{number}</span><Icon aria-hidden="true" /></div><div className="division-visual"><div className="visual-lines" /><div className="visual-circle" /><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p><div className="tag-list">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="card-link">Explore domain <ArrowUpRight aria-hidden="true" /></span></Link>)}</div></div></section>
     <section className="section services-section"><div className="container services-layout"><div className="services-intro"><span className="section-kicker">What we do</span><h2>Technology that solves <em>real problems.</em></h2><p>Good technology is not measured by how complex it is. It is measured by what it makes possible.</p><Link className="text-link" href="/services">View all services <ArrowUpRight /></Link></div><div className="services-list">{services.map(([num, title, text]) => <Link href={`/services/${title.toLowerCase().replaceAll(' ', '-')}`} className="service-row" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowUpRight aria-hidden="true" /></Link>)}</div></div></section>
     <section className="statement-section"><div className="container statement-inner"><span className="section-kicker">The TechBengal perspective</span><blockquote>“The most useful technology is the kind that feels like a <em>natural extension</em> of human ambition.”</blockquote><Link className="button button-outline" href="/about">Meet TechBengal <ArrowUpRight /></Link></div></section>
