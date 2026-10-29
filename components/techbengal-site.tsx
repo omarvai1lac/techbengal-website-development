@@ -64,8 +64,9 @@ function CircuitBackground() {
     'M 640 470 V 374 L 720 320 V 260',
     'M 540 0 V 64 L 600 104 V 174',
   ]
+  const brandTraces = ['M 260 470 V 390 L 350 330 H 470 L 540 270 H 650', 'M 840 -30 V 48 L 760 100 H 650 L 570 160 H 470']
   const terminals = [[170,96],[210,286],[980,58],[1000,250],[120,74],[360,54],[900,74],[1010,360],[220,372],[640,374],[540,64]]
-  return <div className="circuit-background" aria-hidden="true"><div className="circuit-glow" /><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-traces">{traces.map(trace => <path key={trace} d={trace} />)}</g><g className="circuit-energy-packets">{traces.map((trace, index) => <path key={`packet-${trace}`} d={trace} style={{ animationDelay: `${index * -0.7}s` }} />)}</g><g className="circuit-terminals">{terminals.map(([cx, cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" />)}</g></svg></div>
+  return <div className="circuit-background" aria-hidden="true"><div className="circuit-glow" /><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-traces">{traces.map(trace => <path key={trace} d={trace} />)}</g><g className="circuit-energy-packets">{traces.map((trace, index) => <path key={`packet-${trace}`} d={trace} style={{ animationDelay: `${index * -0.7}s` }} />)}</g><g className="circuit-brand-traces">{brandTraces.map((trace, index) => <path key={trace} d={trace} style={{ animationDelay: `${index * -2.5}s` }} />)}</g><g className="circuit-terminals">{terminals.map(([cx, cy], index) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" style={{ animationDelay: `${index * -0.3}s` }} />)}</g></svg></div>
 }
 
 function Footer() {
