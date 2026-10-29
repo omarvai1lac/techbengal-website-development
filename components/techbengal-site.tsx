@@ -52,16 +52,20 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
 
 function CircuitBackground() {
   const traces = [
-    'M -40 78 H 170 L 245 132 H 420 L 500 78 H 700',
-    'M -30 260 H 120 L 210 210 H 360 L 430 260 H 580',
-    'M 1140 62 H 950 L 875 118 H 700 L 620 62 H 470',
-    'M 1140 286 H 980 L 900 340 H 730 L 650 286 H 520',
-    'M 250 -20 V 62 L 320 110 V 220',
-    'M 850 -20 V 62 L 780 110 V 220',
-    'M 280 460 V 370 L 350 320 V 250',
-    'M 820 460 V 370 L 750 320 V 250',
+    'M -80 96 H 170 L 280 160 H 520 L 610 112 H 840',
+    'M -50 286 H 210 L 300 236 H 470 L 560 286 H 760',
+    'M 1180 58 H 980 L 900 112 H 720 L 620 58 H 430',
+    'M 1180 250 H 1000 L 910 310 H 760 L 670 250 H 500',
+    'M 120 -30 V 74 L 220 132 V 250',
+    'M 360 -30 V 54 L 440 112 V 188',
+    'M 900 -30 V 74 L 810 132 V 250',
+    'M 1010 470 V 360 L 920 300 V 210',
+    'M 220 470 V 372 L 310 316 V 220',
+    'M 640 470 V 374 L 720 320 V 260',
+    'M 540 0 V 64 L 600 104 V 174',
   ]
-  return <div className="circuit-background" aria-hidden="true"><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-traces">{traces.map(trace => <path key={trace} d={trace} />)}</g><g className="circuit-energy-packets">{traces.map((trace, index) => <path key={`packet-${trace}`} d={trace} style={{ animationDelay: `${index * -0.8}s` }} />)}</g><g className="circuit-terminals">{[[170,78],[120,260],[950,62],[980,286],[250,62],[850,62],[280,370],[820,370]].map(([cx, cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" />)}</g></svg></div>
+  const terminals = [[170,96],[210,286],[980,58],[1000,250],[120,74],[360,54],[900,74],[1010,360],[220,372],[640,374],[540,64]]
+  return <div className="circuit-background" aria-hidden="true"><div className="circuit-glow" /><svg viewBox="0 0 1100 440" preserveAspectRatio="none"><g className="circuit-traces">{traces.map(trace => <path key={trace} d={trace} />)}</g><g className="circuit-energy-packets">{traces.map((trace, index) => <path key={`packet-${trace}`} d={trace} style={{ animationDelay: `${index * -0.7}s` }} />)}</g><g className="circuit-terminals">{terminals.map(([cx, cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" />)}</g></svg></div>
 }
 
 function Footer() {
