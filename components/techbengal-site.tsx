@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { ArrowUpRight, Cpu, Menu, Moon, Network, Sun, X, Zap } from 'lucide-react'
 
 const navItems = [
@@ -56,6 +56,11 @@ function HeroGraphic() {
     <div className="graphic-core"><div className="core-grid" /><div className="core-logo-stage"><img src={brandLogoUrl} alt="" /></div></div>
     <span className="node node-a" /><span className="node node-b" /><span className="node node-c" /><span className="node node-d" />
   </div>
+}
+
+export function PageChrome({ children }: { children: React.ReactNode }) {
+  const [isLight, setIsLight] = useState(false)
+  return <div className={`site-shell page-chrome${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} />{children}<Footer /></div>
 }
 
 export function Footer() {
