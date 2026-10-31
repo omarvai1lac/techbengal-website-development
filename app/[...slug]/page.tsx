@@ -5,6 +5,8 @@ import { SoftwareDomainPage } from '@/components/software-domain-page'
 import { TechnologyPage } from '@/components/technology-page'
 import { ProjectsPage } from '@/components/projects-page'
 import { PageChrome } from '@/components/techbengal-site'
+import { StartProjectPage } from '@/components/start-project-page'
+import { ProjectOrderPage } from '@/components/project-order-page'
 
 const content: Record<string, { eyebrow: string; title: string; text: string }> = {
   about: { eyebrow: 'About TechBengal', title: 'A technology company with a wider horizon.', text: 'TechBengal combines creativity, engineering, automation, and research to build technology that addresses real-world challenges.' },
@@ -20,7 +22,9 @@ const content: Record<string, { eyebrow: string; title: string; text: string }> 
 
 export default async function SlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params
-  const key = slug[0] === 'technology' && slug[1] ? slug.join('/') : slug[0]
+  const key = slug[1] && (slug[0] === 'technology' || slug[0] === 'start-a-project') ? slug.join('/') : slug[0]
+  if (key === 'start-a-project') return <PageChrome><StartProjectPage /></PageChrome>
+  if (key === 'start-a-project/order') return <PageChrome><ProjectOrderPage /></PageChrome>
   if (key === 'services') return <PageChrome><ServicesPage /></PageChrome>
   if (key === 'technology') return <PageChrome><TechnologyPage /></PageChrome>
   if (key === 'projects') return <PageChrome><ProjectsPage /></PageChrome>
