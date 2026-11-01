@@ -13,6 +13,35 @@ const navItems = [
   ['Contact', '/contact'],
 ] as const
 
+const navDropdowns: Record<string, { label: string; href: string; detail: string }[]> = {
+  Services: [
+    { label: 'UI/UX Design', href: '/services/ui-ux-design', detail: 'Clear interfaces with character.' },
+    { label: 'Website Development', href: '/services/website-development', detail: 'Fast digital experiences that move.' },
+    { label: 'AI Automation', href: '/services/ai-automation', detail: 'Practical intelligence for momentum.' },
+  ],
+  Technology: [
+    { label: 'Software & Digital', href: '/technology/software-digital-solutions', detail: 'Products, platforms, and systems.' },
+    { label: 'Electronics & Hardware', href: '/technology/electronics', detail: 'Connected ideas brought to life.' },
+    { label: 'Semiconductors & Robotics', href: '/technology/semiconductors', detail: 'The components shaping tomorrow.' },
+  ],
+  Projects: [
+    { label: 'Selected work', href: '/projects', detail: 'A look at what we have built.' },
+    { label: 'Start a project', href: '/start-a-project', detail: 'Bring your next idea to life.' },
+  ],
+  About: [
+    { label: 'Our approach', href: '/about', detail: 'Technology with intent.' },
+    { label: 'Contact the team', href: '/contact', detail: 'Let us find the right next step.' },
+  ],
+  Insights: [
+    { label: 'Technology notes', href: '/insights', detail: 'Ideas for what comes next.' },
+    { label: 'Future signals', href: '/insights', detail: 'Patterns worth paying attention to.' },
+  ],
+  Contact: [
+    { label: 'Start a conversation', href: '/contact', detail: 'Tell us what you are working on.' },
+    { label: 'Order a project', href: '/start-a-project/order', detail: 'Send a focused project brief.' },
+  ],
+}
+
 const divisions = [
   { number: '01', title: 'Software & Digital Solution', text: 'Digital experiences, custom software, and intelligent automation designed to help businesses operate and grow.', href: '/technology/software-digital-solutions', icon: Network, tone: 'cyan', tags: ['UI/UX', 'Websites', 'AI automation'] },
   { number: '02', title: 'Electronics & Hardware', text: 'Exploring electronic products, hardware development, embedded technologies, and engineering-led innovation.', href: '/technology/electronics', icon: Cpu, tone: 'violet', tags: ['Embedded systems', 'IoT', 'Prototyping'] },
@@ -39,7 +68,7 @@ function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: (
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="wordmark" aria-label="TechBengal home"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link>
-      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
+      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <div className="nav-dropdown-wrap" key={href}><Link className="nav-dropdown-trigger" href={href} aria-haspopup="true">{label}</Link><div className="nav-dropdown" role="menu">{navDropdowns[label].map(item => <Link key={`${label}-${item.label}`} href={item.href} role="menuitem"><strong>{item.label}</strong><span>{item.detail}</span></Link>)}</div></div>)}</nav>
       <div className="header-actions">
         <button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
         <Link className="button button-small button-light desktop-cta" href="/start-a-project">Start a Project <ArrowUpRight aria-hidden="true" /></Link>
