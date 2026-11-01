@@ -7,6 +7,7 @@ import { ProjectsPage } from '@/components/projects-page'
 import { PageChrome } from '@/components/techbengal-site'
 import { StartProjectPage } from '@/components/start-project-page'
 import { ProjectOrderPage } from '@/components/project-order-page'
+import { InsightsPage } from '@/components/insights-page'
 
 const content: Record<string, { eyebrow: string; title: string; text: string }> = {
   about: { eyebrow: 'About TechBengal', title: 'A technology company with a wider horizon.', text: 'TechBengal combines creativity, engineering, automation, and research to build technology that addresses real-world challenges.' },
@@ -28,6 +29,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
   if (key === 'services') return <PageChrome><ServicesPage /></PageChrome>
   if (key === 'technology') return <PageChrome><TechnologyPage /></PageChrome>
   if (key === 'projects') return <PageChrome><ProjectsPage /></PageChrome>
+  if (key === 'insights') return <PageChrome><InsightsPage /></PageChrome>
   if (key === 'technology/software-digital-solutions') return <PageChrome><SoftwareDomainPage /></PageChrome>
   const item = content[key] ?? content.technology
   return <PageChrome><main className="inner-page"><div className="container inner-wrap"><Link className="wordmark inner-wordmark" href="/"><span className="brand-mark"><span /><span /><span /><span /></span><span>Tech<span className="wordmark-accent">Bengal</span></span></Link><div className="inner-content"><span className="section-kicker">{item.eyebrow}</span><h1>{item.title}</h1><p>{item.text}</p><Link className="button button-primary" href={key === 'contact' ? 'mailto:hello@techbengal.com' : '/contact'}>{key === 'contact' ? 'Email TechBengal' : 'Start a conversation'} <ArrowUpRight /></Link></div><Link href="/" className="text-link">Back to home <ArrowUpRight /></Link></div></main></PageChrome>
