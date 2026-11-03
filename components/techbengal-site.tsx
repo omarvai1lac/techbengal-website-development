@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { ArrowUpRight, Cpu, Menu, Moon, Network, Sun, X, Zap } from 'lucide-react'
 
 const navItems = [
@@ -59,18 +59,6 @@ const services = [
 
 const brandLogoUrl = '/logo.png'
 
-const serviceSlides = [
-  ['UI/UX Design', 'Design Experiences That Turn Visitors Into Customers.'],
-  ['Landing Pages', 'Turn Clicks Into Leads. Turn Leads Into Opportunities.'],
-  ['Website Development', 'Build a Digital Presence That Works for Your Business.'],
-  ['Custom Software', 'Replace Operational Complexity With Smarter Systems.'],
-  ['AI Automation', 'Let AI Handle Repetitive Work. Free Your Team to Grow.'],
-  ['AI Integration', 'Bring Intelligence Into the Tools You Already Use.'],
-  ['Digital Marketing', 'Reach the Right Audience. Make Every Campaign Count.'],
-  ['Sales Automation', 'Move Leads Through Your Sales Pipeline More Efficiently.'],
-  ['AI-Powered Marketing Automation', 'Personalize Campaigns. Automate Engagement. Scale Smarter.'],
-] as const
-
 function Mark() {
   return <span className="brand-logo-frame" aria-hidden="true"><img src={brandLogoUrl} alt="" /></span>
 }
@@ -110,12 +98,8 @@ export function Footer() {
 
 export function TechBengalSite() {
   const [isLight, setIsLight] = useState(false)
-  const [heroIndex, setHeroIndex] = useState(0)
-  const [heroPaused, setHeroPaused] = useState(false)
-  const service = serviceSlides[heroIndex]
-  useEffect(() => { const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduced || heroPaused) return; const timer = window.setInterval(() => setHeroIndex(index => (index + 1) % serviceSlides.length), 5200); return () => window.clearInterval(timer) }, [heroPaused])
   return <div className={`site-shell${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} /><main>
-    <section className="hero-section"><div className="container hero-marketing-grid"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> TechBengal growth systems</div><h1>We Turn Your Business Goals Into <em>Digital Growth.</em></h1><p className="hero-description">From high-converting landing pages and custom software to AI-powered sales and marketing automation, TechBengal helps businesses build smarter systems, reach more customers, and grow efficiently.</p><div className="hero-actions"><Link className="button button-primary" href="/start-a-project">Let&apos;s Grow Your Business <ArrowUpRight /></Link><Link className="text-link" href="/services">Explore Our Services <ArrowUpRight /></Link></div></div><div className="hero-service-panel" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}><div className="hero-panel-visual" aria-hidden="true"><span className="hero-panel-node hero-panel-node-one" /><span className="hero-panel-node hero-panel-node-two" /><span className="hero-panel-node hero-panel-node-three" /><span className="hero-panel-path hero-panel-path-one" /><span className="hero-panel-path hero-panel-path-two" /><div className="hero-panel-core">TB</div></div><div className="hero-service-copy" aria-live="polite"><span className="hero-service-index">{String(heroIndex + 1).padStart(2, '0')} / {String(serviceSlides.length).padStart(2, '0')}</span><h2 key={heroIndex}>{service[0]}</h2><p key={`copy-${heroIndex}`}>{service[1]}</p></div><div className="hero-service-controls"><button type="button" onClick={() => setHeroPaused(value => !value)} aria-pressed={heroPaused}>{heroPaused ? 'Resume' : 'Pause'} rotation</button><div className="hero-service-dots" role="tablist" aria-label="Service highlights">{serviceSlides.map(([label], index) => <button key={label} type="button" role="tab" aria-selected={index === heroIndex} aria-label={`Show ${label}`} onClick={() => setHeroIndex(index)} className={index === heroIndex ? 'is-active' : ''} />)}</div></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Technology with intent</span><span className="scroll-line" /></div></section>
+    <section className="hero-section"><div className="container hero-grid hero-grid-centered"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> Software <i>•</i> AI <i>•</i> Hardware <i>•</i> Semiconductors</div><h1>Engineering the <em>future</em> of technology.</h1><p className="hero-description">From intelligent software and AI-powered business solutions to electronics and semiconductor innovation, TechBengal is building technology for a more connected and capable world.</p><div className="hero-actions"><Link className="button button-primary" href="/start-a-project">Start a Project <ArrowUpRight /></Link><Link className="text-link" href="/technology">Explore our capabilities <ArrowUpRight /></Link></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Technology with intent</span><span className="scroll-line" /></div></section>
     <section className="section divisions-section"><div className="container"><div className="section-heading"><div><span className="section-kicker">Our domains</span><h2>Three domains.<br /><em>One technology vision.</em></h2></div><p>We bring together digital innovation, electronics engineering, and semiconductor technology under one forward-looking technology brand.</p></div><div className="division-grid">{divisions.map(({ number, title, text, href, icon: Icon, tone, tags }) => <Link className={`division-card ${tone}`} href={href} key={href}><div className="card-top"><span>{number}</span><Icon aria-hidden="true" /></div><div className="division-visual"><div className="visual-lines" /><div className="visual-circle" /><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p><div className="tag-list">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="card-link">Explore domain <ArrowUpRight aria-hidden="true" /></span></Link>)}</div></div></section>
     <section className="section services-section"><div className="container services-layout"><div className="services-intro"><span className="section-kicker">What we do</span><h2>Technology that solves <em>real problems.</em></h2><p>Good technology is not measured by how complex it is. It is measured by what it makes possible.</p><Link className="text-link" href="/services">View all services <ArrowUpRight /></Link></div><div className="services-list">{services.map(([num, title, text]) => <Link href={`/services/${title.toLowerCase().replaceAll(' ', '-')}`} className="service-row" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowUpRight aria-hidden="true" /></Link>)}</div></div></section>
     <section className="statement-section"><div className="container statement-inner"><span className="section-kicker">The TechBengal perspective</span><blockquote>“The most useful technology is the kind that feels like a <em>natural extension</em> of human ambition.”</blockquote><Link className="button button-outline" href="/about">Meet TechBengal <ArrowUpRight /></Link></div></section>
