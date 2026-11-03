@@ -13,6 +13,8 @@ const navItems = [
   ['Contact', '/contact'],
 ] as const
 
+const navBn: Record<string, string> = { Services: 'সেবাসমূহ', Technology: 'প্রযুক্তি', Projects: 'প্রকল্প', About: 'আমাদের কথা', Insights: 'ভাবনা', Contact: 'যোগাযোগ' }
+
 const navDropdowns: Record<string, { label: string; href: string; detail: string }[]> = {
   Services: [
     { label: 'UI/UX Design', href: '/services/ui-ux-design', detail: 'Clear interfaces with character.' },
@@ -57,32 +59,34 @@ const services = [
   ['06', 'Business Support', 'A steady technical partner for your next important decision.'],
 ] as const
 
+const serviceNamesBn = ['ইউআই/ইউএক্স ডিজাইন', 'ল্যান্ডিং পেজ', 'ওয়েবসাইট ডেভেলপমেন্ট', 'কাস্টম সফটওয়্যার', 'এআই অটোমেশন', 'এআই ইন্টিগ্রেশন', 'ডিজিটাল মার্কেটিং', 'সেলস অটোমেশন', 'এআই-চালিত মার্কেটিং অটোমেশন']
+
 const brandLogoUrl = '/logo.png'
 
 const serviceSlides = [
-  ['UI/UX Design', 'Design Experiences That Turn Visitors Into Customers.'],
-  ['Landing Pages', 'Turn Clicks Into Leads. Turn Leads Into Opportunities.'],
-  ['Website Development', 'Build a Digital Presence That Works for Your Business.'],
-  ['Custom Software', 'Replace Operational Complexity With Smarter Systems.'],
-  ['AI Automation', 'Let AI Handle Repetitive Work. Free Your Team to Grow.'],
-  ['AI Integration', 'Bring Intelligence Into the Tools You Already Use.'],
-  ['Digital Marketing', 'Reach the Right Audience. Make Every Campaign Count.'],
-  ['Sales Automation', 'Move Leads Through Your Sales Pipeline More Efficiently.'],
-  ['AI-Powered Marketing Automation', 'Personalize Campaigns. Automate Engagement. Scale Smarter.'],
+  ['UI/UX Design', 'Design Experiences That Turn Visitors Into Customers.', 'এমন অভিজ্ঞতা তৈরি করি, যা দর্শককে গ্রাহকে পরিণত করে।'],
+  ['Landing Pages', 'Turn Clicks Into Leads. Turn Leads Into Opportunities.', 'ক্লিককে লিডে, আর লিডকে ব্যবসার সুযোগে রূপ দিই।'],
+  ['Website Development', 'Build a Digital Presence That Works for Your Business.', 'আপনার ব্যবসার জন্য সত্যিই কাজ করে—এমন ডিজিটাল উপস্থিতি তৈরি করি।'],
+  ['Custom Software', 'Replace Operational Complexity With Smarter Systems.', 'জটিল কাজকে সহজ, বুদ্ধিমান সিস্টেমে বদলে দিই।'],
+  ['AI Automation', 'Let AI Handle Repetitive Work. Free Your Team to Grow.', 'একঘেয়ে কাজ AI-কে দিন, আপনার দলকে এগিয়ে যাওয়ার সুযোগ দিন।'],
+  ['AI Integration', 'Bring Intelligence Into the Tools You Already Use.', 'আপনার ব্যবহৃত টুলগুলোর মধ্যেই বুদ্ধিমান AI যুক্ত করি।'],
+  ['Digital Marketing', 'Reach the Right Audience. Make Every Campaign Count.', 'সঠিক মানুষের কাছে পৌঁছান, প্রতিটি প্রচারণাকে ফলপ্রসূ করুন।'],
+  ['Sales Automation', 'Move Leads Through Your Sales Pipeline More Efficiently.', 'লিডকে আরও দক্ষতার সঙ্গে বিক্রয়ের পথে এগিয়ে নিন।'],
+  ['AI-Powered Marketing Automation', 'Personalize Campaigns. Automate Engagement. Scale Smarter.', 'ব্যক্তিগত প্রচারণা চালান, যোগাযোগ স্বয়ংক্রিয় করুন, বুদ্ধিমানের মতো বড় হন।'],
 ] as const
 
 function Mark() {
   return <span className="brand-logo-frame" aria-hidden="true"><img src={brandLogoUrl} alt="" /></span>
 }
 
-function Header({ isLight, onToggleTheme }: { isLight: boolean; onToggleTheme: () => void }) {
+function Header({ isLight, onToggleTheme, isBangla, onToggleLanguage }: { isLight: boolean; onToggleTheme: () => void; isBangla: boolean; onToggleLanguage: () => void }) {
   const [open, setOpen] = useState(false)
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="wordmark" aria-label="TechBengal home"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link>
-      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <div className="nav-dropdown-wrap" key={href}><Link className="nav-dropdown-trigger" href={href} aria-haspopup="true">{label}</Link><div className="nav-dropdown" role="menu">{navDropdowns[label].map(item => <Link key={`${label}-${item.label}`} href={item.href} role="menuitem"><strong>{item.label}</strong><span>{item.detail}</span></Link>)}</div></div>)}</nav>
+      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <div className="nav-dropdown-wrap" key={href}><Link className="nav-dropdown-trigger" href={href} aria-haspopup="true">{isBangla ? navBn[label] : label}</Link><div className="nav-dropdown" role="menu">{navDropdowns[label].map(item => <Link key={`${label}-${item.label}`} href={item.href} role="menuitem"><strong>{isBangla && label === 'Technology' ? item.label.replace('Software & Digital', 'সফটওয়্যার ও ডিজিটাল').replace('Electronics & Hardware', 'ইলেকট্রনিক্স ও হার্ডওয়্যার').replace('Semiconductors & Robotics', 'সেমিকন্ডাক্টর ও রোবোটিক্স') : item.label}</strong><span>{item.detail}</span></Link>)}</div></div>)}</nav>
       <div className="header-actions">
-        <button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
+        <button className="language-toggle" type="button" aria-label={isBangla ? 'Switch to English' : 'বাংলায় দেখুন'} aria-pressed={isBangla} onClick={onToggleLanguage}><span className={!isBangla ? 'active' : ''}>EN</span><span className={isBangla ? 'active' : ''}>BN</span></button><button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
         <Link className="button button-small button-light desktop-cta" href="/start-a-project">Start a Project <ArrowUpRight aria-hidden="true" /></Link>
       </div>
       <button className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
@@ -101,7 +105,8 @@ function HeroGraphic() {
 
 export function PageChrome({ children }: { children: React.ReactNode }) {
   const [isLight, setIsLight] = useState(false)
-  return <div className={`site-shell page-chrome${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} />{children}<Footer /></div>
+  const [isBangla, setIsBangla] = useState(false)
+  return <div className={`site-shell page-chrome${isLight ? ' theme-light' : ''}${isBangla ? ' lang-bn' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} isBangla={isBangla} onToggleLanguage={() => setIsBangla(value => !value)} />{children}<Footer /></div>
 }
 
 export function Footer() {
@@ -110,12 +115,13 @@ export function Footer() {
 
 export function TechBengalSite() {
   const [isLight, setIsLight] = useState(false)
+  const [isBangla, setIsBangla] = useState(false)
   const [serviceIndex, setServiceIndex] = useState(0)
   const [servicePaused, setServicePaused] = useState(false)
   const service = serviceSlides[serviceIndex]
   useEffect(() => { if (servicePaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const timer = window.setInterval(() => setServiceIndex(index => (index + 1) % serviceSlides.length), 6500); return () => window.clearInterval(timer) }, [servicePaused])
-  return <div className={`site-shell${isLight ? ' theme-light' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} /><main>
-    <section className="hero-section"><div className="container hero-business-layout"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> TechBengal growth systems</div><h1>We Turn Your Business Goals Into <em>Digital Growth.</em></h1><p className="hero-description">From high-converting landing pages and custom software to AI-powered sales and marketing automation, TechBengal helps businesses build smarter systems, reach more customers, and grow efficiently.</p><div className="hero-actions"><Link className="button button-primary" href="/start-a-project">Let&apos;s Grow Your Business <ArrowUpRight /></Link><Link className="text-link" href="/services">Explore Our Services <ArrowUpRight /></Link></div></div><div className="hero-service-slider" onMouseEnter={() => setServicePaused(true)} onMouseLeave={() => setServicePaused(false)} onFocus={() => setServicePaused(true)} onBlur={() => setServicePaused(false)}><div className="hero-service-visual" aria-hidden="true"><span className="service-node service-node-one" /><span className="service-node service-node-two" /><span className="service-node service-node-three" /><span className="service-path service-path-one" /><span className="service-path service-path-two" /></div><div className="hero-service-copy" aria-live="polite"><span className="service-counter">{String(serviceIndex + 1).padStart(2, '0')} / {String(serviceSlides.length).padStart(2, '0')}</span><h2 key={serviceIndex}>{service[0]}</h2><p key={`service-copy-${serviceIndex}`}>{service[1]}</p></div><div className="hero-service-controls"><button type="button" onClick={() => setServicePaused(value => !value)} aria-pressed={servicePaused}>{servicePaused ? 'Resume' : 'Pause'} rotation</button><div className="service-dots" role="tablist" aria-label="Service highlights">{serviceSlides.map(([label], index) => <button key={label} type="button" role="tab" aria-selected={index === serviceIndex} aria-label={`Show ${label}`} onClick={() => setServiceIndex(index)} className={index === serviceIndex ? 'is-active' : ''} />)}</div></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Growth through technology</span><span className="scroll-line" /></div></section>
+  return <div className={`site-shell${isLight ? ' theme-light' : ''}${isBangla ? ' lang-bn' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} isBangla={isBangla} onToggleLanguage={() => setIsBangla(value => !value)} /><main>
+    <section className="hero-section"><div className="container hero-business-layout"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> {isBangla ? 'টেকবেঙ্গল গ্রোথ সিস্টেম' : 'TechBengal growth systems'}</div><h1>{isBangla ? <>আপনার ব্যবসার লক্ষ্যকে <em>ডিজিটাল প্রবৃদ্ধিতে</em> রূপ দিই।</> : <>We Turn Your Business Goals Into <em>Digital Growth.</em></>}</h1><p className="hero-description">{isBangla ? 'উচ্চ-রূপান্তরকারী ল্যান্ডিং পেজ ও কাস্টম সফটওয়্যার থেকে AI-চালিত বিক্রয় এবং মার্কেটিং অটোমেশন—টেকবেঙ্গল ব্যবসাকে আরও স্মার্টভাবে গড়তে, বেশি গ্রাহকের কাছে পৌঁছাতে এবং দক্ষতার সঙ্গে এগোতে সাহায্য করে।' : 'From high-converting landing pages and custom software to AI-powered sales and marketing automation, TechBengal helps businesses build smarter systems, reach more customers, and grow efficiently.'}</p><div className="hero-actions"><Link className="button button-primary" href="/start-a-project">{isBangla ? 'আপনার ব্যবসা বাড়াই' : 'Let&apos;s Grow Your Business'} <ArrowUpRight /></Link><Link className="text-link" href="/services">{isBangla ? 'আমাদের সেবা দেখুন' : 'Explore Our Services'} <ArrowUpRight /></Link></div></div><div className="hero-service-slider" onMouseEnter={() => setServicePaused(true)} onMouseLeave={() => setServicePaused(false)} onFocus={() => setServicePaused(true)} onBlur={() => setServicePaused(false)}><div className="hero-service-visual" aria-hidden="true"><span className="service-node service-node-one" /><span className="service-node service-node-two" /><span className="service-node service-node-three" /><span className="service-path service-path-one" /><span className="service-path service-path-two" /></div><div className="hero-service-copy" aria-live="polite"><span className="service-counter">{String(serviceIndex + 1).padStart(2, '0')} / {String(serviceSlides.length).padStart(2, '0')}</span><h2 key={serviceIndex}>{isBangla ? serviceNamesBn[serviceIndex] : service[0]}</h2><p key={`service-copy-${serviceIndex}`}>{isBangla ? service[2] : service[1]}</p></div><div className="hero-service-controls"><button type="button" onClick={() => setServicePaused(value => !value)} aria-pressed={servicePaused}>{servicePaused ? 'Resume' : 'Pause'} rotation</button><div className="service-dots" role="tablist" aria-label="Service highlights">{serviceSlides.map(([label], index) => <button key={label} type="button" role="tab" aria-selected={index === serviceIndex} aria-label={`Show ${label}`} onClick={() => setServiceIndex(index)} className={index === serviceIndex ? 'is-active' : ''} />)}</div></div></div></div><div className="container hero-foot"><span>01 — 03</span><span>Growth through technology</span><span className="scroll-line" /></div></section>
     <section className="section divisions-section"><div className="container"><div className="section-heading"><div><span className="section-kicker">Our domains</span><h2>Three domains.<br /><em>One technology vision.</em></h2></div><p>We bring together digital innovation, electronics engineering, and semiconductor technology under one forward-looking technology brand.</p></div><div className="division-grid">{divisions.map(({ number, title, text, href, icon: Icon, tone, tags }) => <Link className={`division-card ${tone}`} href={href} key={href}><div className="card-top"><span>{number}</span><Icon aria-hidden="true" /></div><div className="division-visual"><div className="visual-lines" /><div className="visual-circle" /><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p><div className="tag-list">{tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="card-link">Explore domain <ArrowUpRight aria-hidden="true" /></span></Link>)}</div></div></section>
     <section className="section services-section"><div className="container services-layout"><div className="services-intro"><span className="section-kicker">What we do</span><h2>Technology that solves <em>real problems.</em></h2><p>Good technology is not measured by how complex it is. It is measured by what it makes possible.</p><Link className="text-link" href="/services">View all services <ArrowUpRight /></Link></div><div className="services-list">{services.map(([num, title, text]) => <Link href={`/services/${title.toLowerCase().replaceAll(' ', '-')}`} className="service-row" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowUpRight aria-hidden="true" /></Link>)}</div></div></section>
     <section className="statement-section"><div className="container statement-inner"><span className="section-kicker">The TechBengal perspective</span><blockquote>“The most useful technology is the kind that feels like a <em>natural extension</em> of human ambition.”</blockquote><Link className="button button-outline" href="/about">Meet TechBengal <ArrowUpRight /></Link></div></section>
