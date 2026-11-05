@@ -18,6 +18,19 @@ const navBn: Record<string, string> = { Services: 'সেবাসমূহ', Te
 const LanguageContext = createContext({ isBangla: false, toggleLanguage: () => {} })
 export function useLanguage() { return useContext(LanguageContext) }
 
+const pageTranslations: Record<string, string> = {
+  'Back to home': 'হোমে ফিরুন', 'Start a project': 'প্রকল্প শুরু করুন', 'Start a conversation': 'আলোচনা শুরু করুন', 'Talk to us': 'আমাদের সঙ্গে কথা বলুন', 'Talk to TechBengal': 'টেকবেঙ্গলের সঙ্গে কথা বলুন', 'Explore': 'দেখুন', 'Services / 01': 'সেবাসমূহ / ০১', 'What we do': 'আমরা যা করি', 'How we work': 'আমরা যেভাবে কাজ করি', 'Have a challenge in mind?': 'কোনো চ্যালেঞ্জ আছে?', 'We make technology feel': 'প্রযুক্তিকে সহজ মনে করাই', 'possible.': 'সম্ভব করে তুলি।', 'Design & digital experiences': 'ডিজাইন ও ডিজিটাল অভিজ্ঞতা', 'Websites & custom software': 'ওয়েবসাইট ও কাস্টম সফটওয়্যার', 'AI & business automation': 'AI ও ব্যবসায়িক অটোমেশন', 'One partner for the work': 'বিভিন্ন দক্ষতার মাঝের কাজের জন্য', 'between disciplines.': 'একজন নির্ভরযোগ্য সঙ্গী।', 'Clarity before': 'জটিলতার আগে', 'complexity.': 'স্বচ্ছতা।', 'Three ways to move the': 'বিশ্বকে এগিয়ে নেওয়ার তিনটি', 'world forward.': 'প্রযুক্তির পথ।', 'Different disciplines.': 'ভিন্ন ভিন্ন ক্ষেত্র।', 'Shared curiosity.': 'একই কৌতূহল।', 'Ideas in motion.': 'চলমান ভাবনা।', 'Work with intent.': 'উদ্দেশ্যপূর্ণ কাজ।', 'The portfolio': 'আমাদের কাজ', 'A better': 'আরও ভালো', 'way forward.': 'এগিয়ে যাওয়ার পথ।', 'The capability set': 'আমাদের সক্ষমতা', 'How we think': 'আমরা যেভাবে ভাবি', 'Ideas for what comes': 'আগামীর জন্য', 'next.': 'নতুন ভাবনা।', 'Featured perspective': 'বিশেষ ভাবনা', 'The latest thinking': 'সাম্প্রতিক চিন্তা', 'Signals worth': 'যে সংকেতগুলো', 'following.': 'অনুসরণযোগ্য।', 'Keep looking forward': 'সামনে তাকিয়ে থাকুন', 'Let’s make': 'চলুন তৈরি করি', 'the next move.': 'পরবর্তী পদক্ষেপ।', 'Understand the opportunity': 'সুযোগটি বুঝে নেওয়া', 'Shape the right direction': 'সঠিক দিক নির্ধারণ', 'Build with precision': 'নির্ভুলভাবে তৈরি করা', 'Improve what matters': 'গুরুত্বপূর্ণ বিষয় উন্নত করা',
+}
+
+function translatePage(isBangla: boolean) {
+  if (typeof document === 'undefined') return
+  const nodes = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+  const changes: Text[] = []
+  let node: Node | null
+  while ((node = nodes.nextNode())) { if (node.nodeValue?.trim() && node.parentElement?.closest('script, style, svg')) continue; changes.push(node as Text) }
+  changes.forEach(text => { const value = text.nodeValue?.trim() ?? ''; if (isBangla && pageTranslations[value]) text.nodeValue = text.nodeValue?.replace(value, pageTranslations[value]) ?? text.nodeValue; else if (!isBangla) text.nodeValue = Object.entries(pageTranslations).find(([, bn]) => bn === value)?.[0] ?? text.nodeValue })
+}
+
 const navDropdowns: Record<string, { label: string; href: string; detail: string }[]> = {
   Services: [
     { label: 'UI/UX Design', href: '/services/ui-ux-design', detail: 'Clear interfaces with character.' },
@@ -87,7 +100,7 @@ function Header({ isLight, onToggleTheme, isBangla, onToggleLanguage }: { isLigh
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="wordmark" aria-label="TechBengal home"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link>
-      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <div className="nav-dropdown-wrap" key={href}><Link className="nav-dropdown-trigger" href={href} aria-haspopup="true">{isBangla ? navBn[label] : label}</Link><div className="nav-dropdown" role="menu">{navDropdowns[label].map(item => <Link key={`${label}-${item.label}`} href={item.href} role="menuitem"><strong>{isBangla && label === 'Technology' ? item.label.replace('Software & Digital', 'সফটওয়্যার ও ডিজিটাল').replace('Electronics & Hardware', 'ইলেকট্রনিক্স ও হার্ডওয়্যার').replace('Semiconductors & Robotics', 'সেমিকন্ডাক্টর ও রোবোটিক্স') : item.label}</strong><span>{item.detail}</span></Link>)}</div></div>)}</nav>
+      <nav className="desktop-nav" aria-label="Primary navigation">{navItems.map(([label, href]) => <div className="nav-dropdown-wrap" key={href}><Link className="nav-dropdown-trigger" href={href} aria-haspopup="true">{isBangla ? navBn[label] : label}</Link><div className="nav-dropdown" role="menu">{navDropdowns[label].map(item => <Link key={`${label}-${item.label}`} href={item.href} role="menuitem"><strong>{isBangla && label === 'Technology' ? item.label.replace('Software & Digital', 'সফটওয়্যার ও ডিজিটাল').replace('Electronics & Hardware', 'ইলেকট্রনিক্স ও হার্ডওয়্যার').replace('Semiconductors & Robotics', 'সেম���কন্ডাক্টর ও রোবোটিক্স') : item.label}</strong><span>{item.detail}</span></Link>)}</div></div>)}</nav>
       <div className="header-actions">
         <button className="language-toggle" type="button" aria-label={isBangla ? 'Switch to English' : 'বাংলায় দেখুন'} aria-pressed={isBangla} onClick={onToggleLanguage}><span className={!isBangla ? 'active' : ''}>EN</span><span className={isBangla ? 'active' : ''}>BN</span></button><button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
         <Link className="button button-small button-light desktop-cta" href="/start-a-project">{isBangla ? 'প্রকল্প শুরু করুন' : 'Start a Project'} <ArrowUpRight aria-hidden="true" /></Link>
@@ -110,6 +123,7 @@ export function PageChrome({ children }: { children: React.ReactNode }) {
   const [isLight, setIsLight] = useState(false)
   const [isBangla, setIsBangla] = useState(() => typeof window !== 'undefined' && window.localStorage.getItem('techbengal-language') === 'bn')
   useEffect(() => { window.localStorage.setItem('techbengal-language', isBangla ? 'bn' : 'en') }, [isBangla])
+  useEffect(() => { translatePage(isBangla) }, [isBangla])
   return <LanguageContext.Provider value={{ isBangla, toggleLanguage: () => setIsBangla(value => !value) }}><div className={`site-shell page-chrome${isLight ? ' theme-light' : ''}${isBangla ? ' lang-bn' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} isBangla={isBangla} onToggleLanguage={() => setIsBangla(value => !value)} />{children}<Footer /></div></LanguageContext.Provider>
 }
 
@@ -123,6 +137,7 @@ export function TechBengalSite() {
   const [isBangla, setIsBangla] = useState(() => typeof window !== 'undefined' && window.localStorage.getItem('techbengal-language') === 'bn')
   const [serviceIndex, setServiceIndex] = useState(0)
   useEffect(() => { window.localStorage.setItem('techbengal-language', isBangla ? 'bn' : 'en') }, [isBangla])
+  useEffect(() => { translatePage(isBangla) }, [isBangla])
   const [servicePaused, setServicePaused] = useState(false)
   const service = serviceSlides[serviceIndex]
   useEffect(() => { if (servicePaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const timer = window.setInterval(() => setServiceIndex(index => (index + 1) % serviceSlides.length), 6500); return () => window.clearInterval(timer) }, [servicePaused])
