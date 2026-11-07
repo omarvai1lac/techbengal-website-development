@@ -36,6 +36,8 @@ const navDropdowns: Record<string, { label: string; href: string; detail: string
     { label: 'UI/UX Design', href: '/services/ui-ux-design', detail: 'Clear interfaces with character.' },
     { label: 'Website Development', href: '/services/website-development', detail: 'Fast digital experiences that move.' },
     { label: 'AI Automation', href: '/services/ai-automation', detail: 'Practical intelligence for momentum.' },
+    { label: 'Digital Marketing', href: '/services/digital-marketing', detail: 'Reach the right audience with intent.' },
+    { label: 'Business Support', href: '/services/business-support', detail: 'A steady partner for important decisions.' },
   ],
   Technology: [
     { label: 'Software & Digital', href: '/technology/software-digital-solutions', detail: 'Products, platforms, and systems.' },

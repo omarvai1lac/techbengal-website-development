@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowUpRight, Bot, Check, Code2, Layers3, PenTool, Radar, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Bot, BriefcaseBusiness, Check, Code2, Layers3, Megaphone, PenTool, Radar, Sparkles } from 'lucide-react'
 
 const serviceGroups = [
   {
@@ -24,6 +24,20 @@ const serviceGroups = [
     title: 'AI & business automation',
     text: 'Find the repetitive, expensive parts of your operation and connect them to practical intelligence that creates momentum.',
     services: ['AI assistants', 'Workflow automation', 'Data intelligence', 'Process mapping'],
+  },
+  {
+    number: '04',
+    icon: Megaphone,
+    title: 'Digital marketing',
+    text: 'Reach the right audience with focused campaigns, useful content, and growth systems built around your goals.',
+    services: ['Content strategy', 'Campaign planning', 'Search foundations', 'Growth reporting'],
+  },
+  {
+    number: '05',
+    icon: BriefcaseBusiness,
+    title: 'Business support services',
+    text: 'Keep your digital operation moving with a steady technical partner for the decisions and improvements that matter.',
+    services: ['Technical guidance', 'Digital audits', 'Ongoing improvements', 'Team enablement'],
   },
 ]
 
