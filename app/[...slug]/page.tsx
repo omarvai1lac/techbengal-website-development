@@ -12,6 +12,7 @@ import { DetailPage, type DetailContent } from '@/components/detail-page'
 import { UiUxPage } from '@/components/uiux-page'
 import { WebsiteDevelopmentPage } from '@/components/website-development-page'
 import { DigitalMarketingPage } from '@/components/digital-marketing-page'
+import { CustomSoftwarePage } from '@/components/custom-software-page'
 
 const detailContent: Record<string, DetailContent> = {
   about: { eyebrow: 'About TechBengal', title: 'A technology company with a wider horizon.', text: 'We combine creativity, engineering, automation, and research to make technology useful for ambitious businesses.', bullets: ['A practical partner from first question to final system.', 'Design and engineering thinking in the same room.', 'Technology shaped around real people and real constraints.'], accent: 'cyan' },
@@ -51,6 +52,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
   if (key === 'services/ui-ux-design') return <PageChrome><UiUxPage /></PageChrome>
   if (key === 'services/website-development') return <PageChrome><WebsiteDevelopmentPage /></PageChrome>
   if (key === 'services/digital-marketing') return <PageChrome><DigitalMarketingPage /></PageChrome>
+  if (key === 'services/custom-software-development') return <PageChrome><CustomSoftwarePage /></PageChrome>
   if (key === 'technology/software-digital-solutions') return <PageChrome><SoftwareDomainPage /></PageChrome>
   if (detailContent[key]) return <PageChrome><DetailPage content={detailContent[key]} /></PageChrome>
   const item = content[key] ?? content.technology

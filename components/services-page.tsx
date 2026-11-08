@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowUpRight, Bot, BriefcaseBusiness, Check, Code2, Layers3, Megaphone, PenTool, Radar, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Bot, BriefcaseBusiness, Check, Code2, Layers3, Megaphone, PenTool, Radar, ServerCog, Sparkles } from 'lucide-react'
 
 const serviceGroups = [
   {
@@ -34,6 +34,13 @@ const serviceGroups = [
   },
   {
     number: '05',
+    icon: ServerCog,
+    title: 'Custom software design & development',
+    text: 'Purpose-built systems that bring your workflows, data, and operational goals into one connected platform.',
+    services: ['Business systems', 'SaaS products', 'Dashboards & reporting', 'API integrations'],
+  },
+  {
+    number: '06',
     icon: BriefcaseBusiness,
     title: 'Business support services',
     text: 'Keep your digital operation moving with a steady technical partner for the decisions and improvements that matter.',
