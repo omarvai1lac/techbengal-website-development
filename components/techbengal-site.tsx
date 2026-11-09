@@ -19,19 +19,6 @@ const navBn: Record<string, string> = { Services: 'সেবাসমূহ', Te
 const LanguageContext = createContext({ isBangla: false, toggleLanguage: () => {} })
 export function useLanguage() { return useContext(LanguageContext) }
 
-const pageTranslations: Record<string, string> = {
-  'Back to home': 'হোমে ফিরুন', 'Start a project': 'প্রকল্প শুরু করুন', 'Start a conversation': 'আলোচনা শুরু করুন', 'Talk to us': 'আমাদের সঙ্গে কথা বলুন', 'Talk to TechBengal': 'টেকবেঙ্গলের সঙ্গে কথা বলুন', 'Explore': 'দেখুন', 'Services / 01': 'সেবাসমূহ / ০১', 'What we do': 'আমরা যা করি', 'How we work': 'আমরা যেভাবে কাজ করি', 'Have a challenge in mind?': 'কোনো চ্যালেঞ্জ আছে?', 'We make technology feel': 'প্রযুক্তিকে সহজ মনে করাই', 'possible.': 'সম্ভব করে তুলি।', 'Design & digital experiences': 'ডিজাইন ও ডিজিটাল অভিজ্ঞতা', 'Websites & custom software': 'ওয়েবসাইট ও কাস্টম সফটওয়্যার', 'AI & business automation': 'AI ও ব্যবসায়িক অটোমেশন', 'One partner for the work': 'বিভিন্ন দক্ষতার মাঝের কাজের জন্য', 'between disciplines.': 'একজন নির্ভরযোগ্য সঙ্গী।', 'Clarity before': 'জটিলতার আগে', 'complexity.': 'স্বচ্ছতা।', 'Three ways to move the': 'বিশ্বকে এগিয়ে নেওয়ার তিনটি', 'world forward.': 'প্রযুক্তির পথ।', 'Different disciplines.': 'ভিন্ন ভিন্ন ক্ষেত্র।', 'Shared curiosity.': 'একই কৌতূহল।', 'Ideas in motion.': 'চলমান ভাবনা।', 'Work with intent.': 'উদ্দেশ্যপূর্ণ কাজ।', 'The portfolio': 'আমাদের কাজ', 'A better': 'আরও ভালো', 'way forward.': 'এগিয়ে যাওয়ার পথ।', 'The capability set': 'আমাদের সক্ষমতা', 'How we think': 'আমরা যেভাবে ভাবি', 'Ideas for what comes': 'আগামীর জন্য', 'next.': 'নতুন ভাবনা।', 'Featured perspective': 'বিশেষ ভাবনা', 'The latest thinking': 'সাম্প্রতিক চিন্তা', 'Signals worth': 'যে সংকেতগুলো', 'following.': 'অনুসরণযোগ্য।', 'Keep looking forward': 'সামনে তাকিয়ে থাকুন', 'Let’s make': 'চলুন তৈরি করি', 'the next move.': 'পরবর্তী পদক্ষেপ।', 'Understand the opportunity': 'সুযোগটি বুঝে নেওয়া', 'Shape the right direction': 'সঠিক দিক নির্ধারণ', 'Build with precision': 'নির্ভুলভাবে তৈরি করা', 'Improve what matters': 'গুরুত্বপূর্ণ বিষয় উন্নত করা',
-}
-
-function translatePage(isBangla: boolean) {
-  if (typeof document === 'undefined') return
-  const nodes = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
-  const changes: Text[] = []
-  let node: Node | null
-  while ((node = nodes.nextNode())) { if (node.nodeValue?.trim() && node.parentElement?.closest('script, style, svg')) continue; changes.push(node as Text) }
-  changes.forEach(text => { const value = text.nodeValue?.trim() ?? ''; if (isBangla && pageTranslations[value]) text.nodeValue = text.nodeValue?.replace(value, pageTranslations[value]) ?? text.nodeValue; else if (!isBangla) text.nodeValue = Object.entries(pageTranslations).find(([, bn]) => bn === value)?.[0] ?? text.nodeValue })
-}
-
 const navDropdowns: Record<string, { label: string; href: string; detail: string }[]> = {
   Services: [
     { label: 'UI/UX Design', href: '/services/ui-ux-design', detail: 'Clear interfaces with character.' },
@@ -89,7 +76,7 @@ const serviceSlides = [
   ['Website Development', 'Build a Digital Presence That Works for Your Business.', 'আপনার ব্যবসার জন্য সত্যিই কাজ করে—এমন ডিজিটাল উপস্থিতি তৈরি করি।'],
   ['Custom Software', 'Replace Operational Complexity With Smarter Systems.', 'জটিল কাজকে সহজ, বুদ্ধিমান সিস্টেমে বদলে দিই।'],
   ['AI Automation', 'Let AI Handle Repetitive Work. Free Your Team to Grow.', 'একঘেয়ে কাজ AI-কে দিন, আপনার দলকে এগিয়ে যাওয়ার সুযোগ দিন।'],
-  ['AI Integration', 'Bring Intelligence Into the Tools You Already Use.', 'আপনার ব্যবহৃত টুলগুলোর মধ্যেই বুদ্ধিমান AI যুক্ত করি।'],
+  ['AI Integration', 'Bring Intelligence Into the Tools You Already Use.', 'আপনার ব্যবহৃত ��ুলগুলোর মধ্যেই বুদ্ধিমান AI যুক্ত করি।'],
   ['Digital Marketing', 'Reach the Right Audience. Make Every Campaign Count.', 'সঠিক মানুষের কাছে পৌঁছান, ��্রতিটি প্রচারণাকে ফলপ্রসূ করুন।'],
   ['Sales Automation', 'Move Leads Through Your Sales Pipeline More Efficiently.', 'লিডকে আরও দক্ষতার সঙ্গে বিক্রয়ের পথে এগিয়ে নিন।'],
   ['AI-Powered Marketing Automation', 'Personalize Campaigns. Automate Engagement. Scale Smarter.', 'ব্যক্তিগত প্রচারণা চালান, যোগাযোগ স্বয়ংক্রিয় করুন, বুদ্ধিমানের মতো বড় হন।'],
@@ -127,7 +114,6 @@ export function PageChrome({ children }: { children: React.ReactNode }) {
   const [isLight, setIsLight] = useState(false)
   const [isBangla, setIsBangla] = useState(() => typeof window !== 'undefined' && window.localStorage.getItem('techbengal-language') === 'bn')
   useEffect(() => { window.localStorage.setItem('techbengal-language', isBangla ? 'bn' : 'en') }, [isBangla])
-  useEffect(() => { translatePage(isBangla) }, [isBangla])
   return <LanguageContext.Provider value={{ isBangla, toggleLanguage: () => setIsBangla(value => !value) }}><div className={`site-shell page-chrome${isLight ? ' theme-light' : ''}${isBangla ? ' lang-bn' : ''}`}><Header isLight={isLight} onToggleTheme={() => setIsLight(value => !value)} isBangla={isBangla} onToggleLanguage={() => setIsBangla(value => !value)} />{children}<Footer /></div></LanguageContext.Provider>
 }
 
@@ -142,7 +128,6 @@ export function TechBengalSite() {
   const [isBangla, setIsBangla] = useState(() => typeof window !== 'undefined' && window.localStorage.getItem('techbengal-language') === 'bn')
   const [serviceIndex, setServiceIndex] = useState(0)
   useEffect(() => { window.localStorage.setItem('techbengal-language', isBangla ? 'bn' : 'en') }, [isBangla])
-  useEffect(() => { translatePage(isBangla) }, [isBangla])
   const [servicePaused, setServicePaused] = useState(false)
   const service = serviceSlides[serviceIndex]
   useEffect(() => { if (servicePaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const timer = window.setInterval(() => setServiceIndex(index => (index + 1) % serviceSlides.length), 6500); return () => window.clearInterval(timer) }, [servicePaused])
