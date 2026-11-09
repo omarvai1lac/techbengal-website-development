@@ -88,6 +88,7 @@ function Mark() {
 
 function Header({ isLight, onToggleTheme, isBangla, onToggleLanguage }: { isLight: boolean; onToggleTheme: () => void; isBangla: boolean; onToggleLanguage: () => void }) {
   const [open, setOpen] = useState(false)
+  useEffect(() => { if (!open) return; const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false) }; document.addEventListener('keydown', onKeyDown); return () => document.removeEventListener('keydown', onKeyDown) }, [open])
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="wordmark" aria-label="TechBengal home"><Mark /><span>Tech<span className="wordmark-accent">Bengal</span></span></Link>
@@ -96,9 +97,9 @@ function Header({ isLight, onToggleTheme, isBangla, onToggleLanguage }: { isLigh
         <button className="language-toggle" type="button" aria-label={isBangla ? 'Switch to English' : 'বাংলায় দেখুন'} aria-pressed={isBangla} onClick={onToggleLanguage}><span className={!isBangla ? 'active' : ''}>EN</span><span className={isBangla ? 'active' : ''}>BN</span></button><button className="theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark' : 'Light'}</span></button>
         <Link className="button button-small button-light desktop-cta" href="/start-a-project">{isBangla ? 'প্রকল্প শুরু করুন' : 'Start a Project'} <ArrowUpRight aria-hidden="true" /></Link>
       </div>
-      <button className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+      <button className="menu-button" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button>
     </div>
-    {open && <nav className="mobile-nav" aria-label="Mobile navigation">{navItems.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{isBangla ? navBn[label] : label}<ArrowUpRight aria-hidden="true" /></Link>)}<button className="theme-toggle mobile-theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark mode' : 'Light mode'}</span></button><Link className="button button-light" href="/start-a-project" onClick={() => setOpen(false)}>{isBangla ? 'প্রকল্প শুরু করুন' : 'Start a Project'} <ArrowUpRight /></Link></nav>}
+    {open && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navItems.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{isBangla ? navBn[label] : label}<ArrowUpRight aria-hidden="true" /></Link>)}<button className="theme-toggle mobile-theme-toggle" type="button" aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'} aria-pressed={isLight} onClick={onToggleTheme}>{isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}<span>{isLight ? 'Dark mode' : 'Light mode'}</span></button><Link className="button button-light" href="/start-a-project" onClick={() => setOpen(false)}>{isBangla ? 'প্রকল্প শুরু করুন' : 'Start a Project'} <ArrowUpRight /></Link></nav>}
   </header>
 }
 
